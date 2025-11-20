@@ -77,11 +77,11 @@ create table proveedor(
     email varchar(100) not null unique
 );
 
-
 create table inventario(
 	id_inventario int primary key auto_increment,
     id_producto int,
-    stock_actual int,
-    stock_minimo int,
-    stock_maximo int
+    stock_actual int not null,
+    stock_minimo int not null,
+    stock_maximo int not null
 );
+
