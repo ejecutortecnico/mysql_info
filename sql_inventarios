@@ -64,6 +64,16 @@ create table producto(
     id_proveedor int
 );
 
+ALTER TABLE producto
+ADD CONSTRAINT fk_producto_categoria
+FOREIGN KEY (id_categoria)
+REFERENCES categoria(id_categoria);
+
+ALTER TABLE producto
+ADD CONSTRAINT fk_producto_proveedor
+FOREIGN KEY (id_proveedor)
+REFERENCES proveedor(id_proveedor);
+
 create table categoria(
 	id_categoria int primary key auto_increment,
     nombre varchar(100) not null
@@ -84,4 +94,9 @@ create table inventario(
     stock_minimo int not null,
     stock_maximo int not null
 );
+
+ALTER TABLE producto
+ADD CONSTRAINT fk_producto_proveedor
+FOREIGN KEY (id_proveedor)
+REFERENCES proveedor(id_proveedor);
 
