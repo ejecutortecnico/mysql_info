@@ -1,5 +1,5 @@
 create database inventarios;
-
+use inventarios;
 create table empleado(
 	id_empleado int primary key auto_increment,
     nombre varchar(100) not null,
@@ -24,16 +24,6 @@ create table factura(
     id_empleado int
 );
 
-ALTER TABLE factura
-ADD CONSTRAINT fk_facturas_empleado
-FOREIGN KEY (id_empleado)
-REFERENCES empleado(id_empleado);
-
-ALTER TABLE factura
-ADD CONSTRAINT fk_facturas_clienteo
-FOREIGN KEY (id_cliente)
-REFERENCES cliente(id_cliente);
-
 create table detalle_factura(
 	id_detalle int primary key auto_increment,
     cantidad int not null,
@@ -42,16 +32,6 @@ create table detalle_factura(
     id_factura int,
     id_producto int
 );
-
-ALTER TABLE detalle_factura
-ADD CONSTRAINT fk_detalle_producto
-FOREIGN KEY (id_producto)
-REFERENCES producto(id_producto);
-
-ALTER TABLE detalle_factura
-ADD CONSTRAINT fk_detalle_factura
-FOREIGN KEY (id_factura)
-REFERENCES factura(id_factura);
 
 create table producto(
 	id_producto int primary key auto_increment,
@@ -63,16 +43,6 @@ create table producto(
     id_categoria int,
     id_proveedor int
 );
-
-ALTER TABLE producto
-ADD CONSTRAINT fk_producto_categoria
-FOREIGN KEY (id_categoria)
-REFERENCES categoria(id_categoria);
-
-ALTER TABLE producto
-ADD CONSTRAINT fk_producto_proveedor
-FOREIGN KEY (id_proveedor)
-REFERENCES proveedor(id_proveedor);
 
 create table categoria(
 	id_categoria int primary key auto_increment,
@@ -95,8 +65,32 @@ create table inventario(
     stock_maximo int not null
 );
 
+ALTER TABLE factura
+ADD CONSTRAINT fk_facturas_empleado
+FOREIGN KEY (id_empleado)
+REFERENCES empleado(id_empleado);
+
+ALTER TABLE factura
+ADD CONSTRAINT fk_facturas_clienteo
+FOREIGN KEY (id_cliente)
+REFERENCES cliente(id_cliente);
+
+ALTER TABLE detalle_factura
+ADD CONSTRAINT fk_detalle_producto
+FOREIGN KEY (id_producto)
+REFERENCES producto(id_producto);
+
+ALTER TABLE detalle_factura
+ADD CONSTRAINT fk_detalle_factura
+FOREIGN KEY (id_factura)
+REFERENCES factura(id_factura);
+
+ALTER TABLE producto
+ADD CONSTRAINT fk_producto_categoria
+FOREIGN KEY (id_categoria)
+REFERENCES categoria(id_categoria);
+
 ALTER TABLE producto
 ADD CONSTRAINT fk_producto_proveedor
 FOREIGN KEY (id_proveedor)
 REFERENCES proveedor(id_proveedor);
-
