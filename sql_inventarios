@@ -94,3 +94,8 @@ ALTER TABLE producto
 ADD CONSTRAINT fk_producto_proveedor
 FOREIGN KEY (id_proveedor)
 REFERENCES proveedor(id_proveedor);
+
+ALTER TABLE inventario
+ADD CONSTRAINT fk_inventario_producto
+FOREIGN KEY (id_producto)
+REFERENCES producto(id_producto);
