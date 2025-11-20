@@ -34,3 +34,26 @@ ALTER TABLE factura
 ADD CONSTRAINT fk_facturas_clienteo
 FOREIGN KEY (id_cliente)
 REFERENCES cliente(id_cliente);
+
+use inventarios;
+create table detalle_factura(
+	id_detalle int primary key auto_increment,
+    cantidad int not null,
+    precio_unitario decimal(10,2) not null,
+    subtotal decimal(10,2) not null,
+    id_factura int,
+    id_producto int
+);
+
+ALTER TABLE detalle_factura
+ADD CONSTRAINT fk_detalle_producto
+FOREIGN KEY (id_producto)
+REFERENCES producto(id_producto);
+
+ALTER TABLE detalle_factura
+ADD CONSTRAINT fk_detalle_factura
+FOREIGN KEY (id_factura)
+REFERENCES factura(id_factura);
+
+
+
