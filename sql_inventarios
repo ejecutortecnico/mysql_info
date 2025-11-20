@@ -69,3 +69,19 @@ create table categoria(
     nombre varchar(100) not null
 );
 
+create table proveedor(
+	id_proveedor int primary key auto_increment,
+    nombre varchar(100) not null,
+    direccion varchar(200) not null,
+    telefono bigint not null,
+    email varchar(100) not null unique
+);
+
+
+create table inventario(
+	id_inventario int primary key auto_increment,
+    id_producto int,
+    stock_actual int,
+    stock_minimo int,
+    stock_maximo int
+);
